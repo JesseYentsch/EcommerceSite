@@ -11,9 +11,7 @@ const Header = () => {
   const { userInfo } = userLogin
 
   const logoutHandler = () => {
-    console.log('Logout handler hit')
-    localStorage.removeItem('userInfo')
-    dispatch(logout)
+    dispatch(logout())
   }
 
   return (
