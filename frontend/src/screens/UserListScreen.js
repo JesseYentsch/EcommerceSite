@@ -31,6 +31,7 @@ const UserListScreen = ({ history }) => {
       dispatch(deleteUser(id))
     }
   }
+
   return (
     <>
       <h1>Users</h1>
