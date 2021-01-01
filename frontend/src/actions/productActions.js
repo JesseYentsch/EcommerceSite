@@ -14,7 +14,6 @@ import {
   PRODUCT_CREATE_FAILS,
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_SUCCESS,
-  PRODUCT_UPDATE_RESET,
   PRODUCT_UPDATE_FAILS,
 } from '../constants/productConstants'
 import axios from 'axios'
