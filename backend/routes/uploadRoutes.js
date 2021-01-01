@@ -1,4 +1,4 @@
-const exress = require('express')
+const express = require('express')
 const multer = require('multer')
 const router = express.Router()
 const path = require('path')
@@ -30,11 +30,11 @@ function checkFileType(file, cb) {
 const upload = multer({
   storage,
   fileFilter: function (req, file, cb) {
-    checkFileType(file)
+    checkFileType(file, cb)
   },
 })
 
 router.post('/', upload.single('image'), (req, res) => {
-  res.send(`${req.file.path}`)
+  res.send(`/${req.file.path.replace(/\\/g, '/')}`)
 })
-export default router
+module.exports = router
