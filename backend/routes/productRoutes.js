@@ -7,6 +7,7 @@ const {
   updateProduct,
   createProduct,
   createProductReview,
+  getTopProducts,
 } = require('../controllers/productController')
 const { protect, admin } = require('../middleware/authMiddleware')
 
@@ -15,6 +16,7 @@ const { protect, admin } = require('../middleware/authMiddleware')
 //@access Public route
 router.route('/').get(getProducts).post(protect, admin, createProduct)
 router.route('/:id/reviews').post(protect, createProductReview)
+router.get('/top', getTopProducts)
 
 //@desc Fetch single product
 //@route GET /api/products/:id

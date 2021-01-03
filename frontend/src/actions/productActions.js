@@ -18,6 +18,9 @@ import {
   PRODUCT_CREATE_REVIEW_REQUEST,
   PRODUCT_CREATE_REVIEW_SUCCESS,
   PRODUCT_CREATE_REVIEW_FAILS,
+  PRODUCT_TOP_REQUEST,
+  PRODUCT_TOP_SUCCESS,
+  PRODUCT_TOP_FAILS,
 } from '../constants/productConstants'
 import axios from 'axios'
 
@@ -201,6 +204,30 @@ export const createProductReview = (productId, review) => async (
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_FAILS,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//Action creator functions
+//Uses reduc thunk to use async calls
+//Allows for the () => async(dispatch) => {} call
+export const listTopProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_TOP_REQUEST })
+
+    const { data } = await axios.get(`/api/products/top`)
+
+    dispatch({
+      type: PRODUCT_TOP_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_TOP_FAILS,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
